@@ -32,7 +32,7 @@ function App() {
           </Col>
           <Col className='text-center w-100 py-3 px-5'>
             <div className='chat-bubbles-container'>
-              <div className='chat-bubbles'>
+              <div className='chat-bubbles px-3'>
                 {
                   bubbles.map(bubble => (
                     <ChatBubble message={bubble} />
