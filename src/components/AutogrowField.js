@@ -14,15 +14,17 @@ export const AutogrowField = ({ maxHeight, handleEnter }) => {
   }
 
   const handleKeyDown = (e) => {
+    if (!e.shiftKey) {
+      if (e.keyCode === 13) {
+        // Do something with the text
+        handleEnter(value);
+        setValue('');
+      }
+    }
+
     if (e.keyCode === 16) { // Shift key code
       console.log('on');
       setShiftPressed(true);
-    }
-
-    if (e.keyCode === 13) {
-      // Do something with the text
-      handleEnter(value);
-      setValue('');
     }
   }
 
