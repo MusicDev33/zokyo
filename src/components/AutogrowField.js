@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 
 // Written with ChatGPT!
-export const AutogrowField = ({ maxHeight }) => {
+export const AutogrowField = ({ maxHeight, handleEnter }) => {
   const [value, setValue] = useState("");
   const [shiftPressed, setShiftPressed] = useState(false);
   const textareaRef = useRef(null);
@@ -21,12 +21,14 @@ export const AutogrowField = ({ maxHeight }) => {
 
     if (e.keyCode === 13) {
       // Do something with the text
-      console.log(value);
+      handleEnter(value);
+      setValue('');
     }
   }
 
   const handleChange = (event) => {
-    console.log(shiftPressed);
+    const lastChar = event.target.value.charAt(event.target.value.length - 1);
+    const isEnterKey = lastChar === '\n';
 
     if (shiftPressed && textareaRef.current) {
       setValue(event.target.value);
@@ -38,7 +40,10 @@ export const AutogrowField = ({ maxHeight }) => {
         textareaRef.current.style.height = `${maxHeight}px`;
       }
     } else {
-      
+      if (isEnterKey) {
+        return;
+      }
+      setValue(event.target.value);
     }
   };
 
