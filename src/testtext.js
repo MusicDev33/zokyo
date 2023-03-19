@@ -31,4 +31,11 @@ export const testText = [
     id: 4,
     isFromUser: false
   },
+  {
+    text: `In this example, the .chat-history div has a fixed height of 80vh and overflow-y: auto, which makes it scrollable. The .chat-bubbles div is inside the .chat-history div, and contains the chat bubbles. It has a display: flex and flex-direction: column to arrange the chat bubbles vertically, and gap: 10px to add some space between the bubbles.
+
+    This should make the chat bubbles scrollable and prevent them from getting squished as new ones are added.`,
+    id: 4,
+    isFromUser: false
+  },
 ];

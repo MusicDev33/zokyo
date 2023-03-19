@@ -63,8 +63,14 @@
   border-radius: 16px;
 }
 
+.chat-bubbles-container {
+  height: 75vh;
+  overflow-y: auto;
+}
+
 .chat-bubbles {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: stretch;
 }

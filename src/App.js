@@ -16,7 +16,6 @@ function App() {
   let [bubbles, setBubbles] = useState(testText);
 
   const addChatBubble = (text) => {
-    console.log(text);
     setBubbles([...bubbles, {
       text,
       id: testText.length + 1,
@@ -32,12 +31,14 @@ function App() {
             <button className='z-btn-1'>Content</button>
           </Col>
           <Col className='text-center w-100 py-3 px-5'>
-            <div className='chat-bubbles'>
-              {
-                bubbles.map(bubble => (
-                  <ChatBubble message={bubble} />
-                ))
-              }
+            <div className='chat-bubbles-container'>
+              <div className='chat-bubbles'>
+                {
+                  bubbles.map(bubble => (
+                    <ChatBubble message={bubble} />
+                  ))
+                }
+              </div>
             </div>
           </Col>
         </Row>
