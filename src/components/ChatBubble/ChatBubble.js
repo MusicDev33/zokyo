@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './ChatBubble.scss';
 
 export const ChatBubble = ({message}) => {
@@ -7,7 +8,9 @@ export const ChatBubble = ({message}) => {
       className={`test-card ${message.isFromUser ? "from-user" : "from-bot"}`}
       key={message.id}
     >
-      <p>{message.text}</p>
+      <div>
+        <ReactMarkdown children={message.text} />
+      </div>
     </div>
   )
 }
