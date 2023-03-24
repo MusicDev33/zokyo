@@ -8,7 +8,6 @@ export const AutogrowField = ({ maxHeight, handleEnter }) => {
 
   const handleKeyUp = (e) => {
     if (e.keyCode === 16) { // Shift key code
-      console.log('off');
       setShiftPressed(false);
     }
   }
@@ -23,7 +22,6 @@ export const AutogrowField = ({ maxHeight, handleEnter }) => {
     }
 
     if (e.keyCode === 16) { // Shift key code
-      console.log('on');
       setShiftPressed(true);
     }
   }

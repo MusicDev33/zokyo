@@ -33,7 +33,6 @@ function App() {
         isFromUser: false
       }
     ]);
-    console.log(newMsg);
   }
 
   return (
