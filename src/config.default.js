@@ -1,5 +1,5 @@
 /*
-Copy this file into env.js and replace all values with non-default values
+Copy this file into config.js and replace all values with non-default values
 */
 
 export const API_KEY = 'openai-key-here';

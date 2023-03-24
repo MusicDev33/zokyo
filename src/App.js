@@ -9,12 +9,14 @@ import Col from 'react-bootstrap/Col';
 
 import { ChatBubble } from 'components/ChatBubble/ChatBubble';
 import { AutogrowField } from 'components/AutogrowField';
+import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { testText } from 'testtext';
 import { sendChat } from 'services/chat.service';
 
 function App() {
   let [bubbles, setBubbles] = useState([]);
+  let [mode, setMode] = useState('default');
 
   const handleEnter = async (text) => {
     setBubbles((prevBubbles) => [...prevBubbles, 
@@ -25,7 +27,7 @@ function App() {
       }
     ]);
 
-    const newMsg = await sendChat(text);
+    const newMsg = await sendChat(text, mode);
     setBubbles((prevBubbles) => [...prevBubbles, 
       {
         text: newMsg.content,
@@ -33,6 +35,10 @@ function App() {
         isFromUser: false
       }
     ]);
+  }
+
+  const handleSetMode = (newMode) => {
+    setMode(newMode);
   }
 
   return (
@@ -55,6 +61,7 @@ function App() {
               </div>
 
               <div className='flexbox-2'>
+                <ModeSelect handle={handleSetMode} />
                 <AutogrowField maxHeight={350} handleEnter={handleEnter} />
               </div>
             </section>

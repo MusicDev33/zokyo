@@ -96,8 +96,9 @@
 .flexbox-2 {
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
 
   padding-bottom: 20px;
 }

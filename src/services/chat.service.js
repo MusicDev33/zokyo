@@ -4,12 +4,14 @@ The Chat Service will manage everything chat-related. This includes the followin
   - ????
 */
 import axios from 'axios';
+import { MDAPI_URL } from 'config';
 
-const reqOpenAi = async (text) => {
-  const url = 'https://zokyo.shelbymccowan.com/api/v2/zokyo/code';
+const reqOpenAi = async (msg, mode) => {
+  const url = `${MDAPI_URL}/zokyo/code`;
 
   const data = {
-    msg: text
+    msg,
+    mode
   }
 
   try {
@@ -23,8 +25,8 @@ const reqOpenAi = async (text) => {
   }
 }
 
-export const sendChat = async (text) => {
-  const res = await reqOpenAi(text);
+export const sendChat = async (text, mode) => {
+  const res = await reqOpenAi(text, mode);
   if (res.success !== true) {
     return res
   }
