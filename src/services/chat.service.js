@@ -6,7 +6,7 @@ The Chat Service will manage everything chat-related. This includes the followin
 import axios from 'axios';
 
 const reqOpenAi = async (text) => {
-  const url = 'https://reads.shelbymccowan.com/api/v2/zokyo/code';
+  const url = 'https://zokyo.shelbymccowan.com/api/v2/zokyo/code';
 
   const data = {
     msg: text
