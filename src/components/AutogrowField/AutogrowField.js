@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import './AutogrowField.scss';
 
 // Written with ChatGPT!
 export const AutogrowField = ({ maxHeight, handleEnter }) => {
@@ -49,7 +50,7 @@ export const AutogrowField = ({ maxHeight, handleEnter }) => {
 
   return (
     <textarea
-      className="input-main"
+      className="autogrow-field"
       ref={textareaRef}
       value={value}
       onChange={handleChange}

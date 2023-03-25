@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import { ChatBubble } from 'components/ChatBubble/ChatBubble';
-import { AutogrowField } from 'components/AutogrowField';
+import { AutogrowField } from 'components/AutogrowField/AutogrowField';
 import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { testText } from 'testtext';
