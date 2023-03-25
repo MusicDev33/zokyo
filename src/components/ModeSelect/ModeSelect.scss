@@ -3,23 +3,14 @@
 
   background: white;
   border-radius: 999px;
-  max-width: 60%;
-  padding: 2px 7px;
+  padding: 2px 2px;
   text-align: left;
 
-  margin: 15px 0;
-
-  background: linear-gradient(
-    25deg, 
-    rgba(255, 255, 255, 0.4), 
-    rgba(255, 255, 255, 0.1)
-  );
-  backdrop-filter: blur(20px);
+  background: #3f3f3f;
   border: 1px solid rgba(255, 255, 255, 0.1);
 
-  box-shadow: 0px 1px 24px -1px rgba(0, 0, 0, 0.1);
-
   .mode {
+    color: #2294fb;
     z-index: 10;
 
     font-weight: bold;
@@ -31,14 +22,16 @@
     cursor: pointer;
     transition: 0.3s;
 
-    border: 1px solid #e344ae;
+    border: 1px solid #2294fb;
 
     &:hover {
-      background: #e344ae;
+      color: white;
+      background: #2294fb;
     }
 
     &.current {
-      background: #e344ae;
+      color: white;
+      background: #2294fb;
     }
   }
 }

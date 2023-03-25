@@ -1,14 +1,27 @@
 .autogrow-field {
   outline: none;
 
-  background-color: #5a5a5a;
   color: white;
 
   width: 50vw;
 
-  border: 1px solid #ac4040;
+  border: 1px solid #234766;
+  background-color: #383838;
+
   padding: 10px 15px;
   border-radius: 16px;
 
   z-index: 10;
+
+  transition: 0.35s;
+
+  &:hover {
+    border-color: #1b70bb;
+    background-color: #3f3f3f;
+  }
+
+  &:focus {
+    border-color: #2294fb!important;
+    background-color: #4d4d4d!important;
+  }
 }

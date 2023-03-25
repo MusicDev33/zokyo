@@ -46,7 +46,9 @@ function App() {
       <Container fluid className='h-100'>
         <Row className='h-100'>
           <Col sm={2} className="justify-content-start">
-            <button className='z-btn-1'>Content</button>
+            <div className='nav-column py-2'>
+              <ModeSelect handle={handleSetMode} />
+            </div>
           </Col>
           <Col className='text-center w-100 ps-5 pe-0 this-column'>
             <section className='double-container'>
@@ -61,7 +63,6 @@ function App() {
               </div>
 
               <div className='flexbox-2'>
-                <ModeSelect handle={handleSetMode} />
                 <AutogrowField maxHeight={350} handleEnter={handleEnter} />
               </div>
             </section>
