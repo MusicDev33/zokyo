@@ -26,14 +26,19 @@
 
     padding: 7px 24px;
     margin: 7px 8px;
-    background: #e344ae;
 
     border-radius: 999px;
     cursor: pointer;
     transition: 0.3s;
 
+    border: 1px solid #e344ae;
+
     &:hover {
-      background: #cc3098;
+      background: #e344ae;
+    }
+
+    &.current {
+      background: #e344ae;
     }
   }
 }
