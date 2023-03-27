@@ -1,7 +1,7 @@
 import 'scss/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,6 +15,8 @@ import { testText } from 'testtext';
 import { sendChat } from 'services/chat.service';
 
 function App() {
+  const bubbleContainerRef = useRef(null);
+
   let [bubbles, setBubbles] = useState([]);
   let [mode, setMode] = useState('default');
 
@@ -37,6 +39,11 @@ function App() {
     ]);
   }
 
+  useEffect(() => {
+    const bubbleContainer = bubbleContainerRef.current;
+    bubbleContainer.scrollTop = bubbleContainer.scrollHeight;
+  }, [bubbles])
+
   const handleSetMode = (newMode) => {
     setMode(newMode);
   }
@@ -52,7 +59,7 @@ function App() {
           </Col>
           <Col className='text-center w-100 ps-5 pe-0 this-column'>
             <section className='double-container'>
-              <div className='chat-bubbles-container'>
+              <div className='chat-bubbles-container' ref={bubbleContainerRef}>
                 <div className='chat-bubbles px-3'>
                   {
                     bubbles.map(bubble => (
