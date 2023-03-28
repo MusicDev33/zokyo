@@ -35,3 +35,22 @@ export const sendChat = async (text, mode) => {
 
   return newMsg;
 }
+
+export const sendChats = async (chats, mode) => {
+  const url = `${MDAPI_URL}/zokyo/code`;
+
+  const data = {
+    chats,
+    mode
+  }
+
+  try {
+    const res = await axios.post(url, data);
+    res['success'] = true;
+
+    return res.data.choices[0].message;
+  } catch (err) {
+    console.log(err);
+    return {success: false}
+  }
+}

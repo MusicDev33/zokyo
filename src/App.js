@@ -12,7 +12,7 @@ import { AutogrowField } from 'components/AutogrowField/AutogrowField';
 import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { testText } from 'testtext';
-import { sendChat } from 'services/chat.service';
+import { sendChats } from 'services/chat.service';
 
 function App() {
   const bubbleContainerRef = useRef(null);
@@ -21,20 +21,40 @@ function App() {
   let [mode, setMode] = useState('default');
 
   const handleEnter = async (text) => {
-    setBubbles((prevBubbles) => [...prevBubbles, 
-      {
-        text,
-        id: testText.length + 1,
-        isFromUser: true
-      }
-    ]);
+    const oldBubbles = bubbles;
 
-    const newMsg = await sendChat(text, mode);
+    setBubbles((prevBubbles) => {
+      let newBubbles = [
+        ...prevBubbles, 
+        {
+          content: text,
+          id: testText.length + 1,
+          role: 'user'
+        }
+      ];
+
+      return newBubbles;
+    });
+
+    oldBubbles.push({
+      content: text,
+      id: testText.length + 1,
+      role: 'user'
+    });
+
+    const oldBubbleData = oldBubbles.map(chatBubble => {
+      return {
+        content: chatBubble.content,
+        role: chatBubble.role
+      }
+    });
+
+    const newMsg = await sendChats(oldBubbleData, mode);
     setBubbles((prevBubbles) => [...prevBubbles, 
       {
-        text: newMsg.content,
+        content: newMsg.content,
         id: testText.length + 1,
-        isFromUser: false
+        role: 'assistant'
       }
     ]);
   }
