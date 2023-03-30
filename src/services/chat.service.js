@@ -6,12 +6,15 @@ The Chat Service will manage everything chat-related. This includes the followin
 import axios from 'axios';
 import { MDAPI_URL } from 'config';
 
+const USERNAME = 'testuser1';
+
 const reqOpenAi = async (msg, mode) => {
   const url = `${MDAPI_URL}/zokyo/code`;
 
   const data = {
     msg,
-    mode
+    mode,
+    user: USERNAME
   }
 
   try {

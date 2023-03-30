@@ -19,6 +19,7 @@ function App() {
 
   let [bubbles, setBubbles] = useState([]);
   let [mode, setMode] = useState('default');
+  let [convId, setConvId] = useState('');
 
   const handleEnter = async (text) => {
     const oldBubbles = bubbles;
