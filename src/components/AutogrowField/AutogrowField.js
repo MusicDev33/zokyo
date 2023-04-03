@@ -42,6 +42,7 @@ export const AutogrowField = ({ maxHeight, handleEnter }) => {
       }
     } else {
       if (isEnterKey) {
+        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
         return;
       }
       setValue(event.target.value);

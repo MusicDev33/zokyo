@@ -5,10 +5,10 @@ export const ChatBubble = ({message}) => {
   return (
     <div
       className={`test-card ${message.role == 'user' ? "from-user" : "from-bot"}`}
-      key={message.id}
+      key={'' + message.timestamp}
     >
       <div>
-        <ReactMarkdown children={message.content} />
+        <ReactMarkdown children={message.content} breaks={true} />
       </div>
     </div>
   )

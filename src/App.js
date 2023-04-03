@@ -12,7 +12,8 @@ import { AutogrowField } from 'components/AutogrowField/AutogrowField';
 import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { testText } from 'testtext';
-import { sendChats } from 'services/chat.service';
+import { sendChats, sendChat } from 'services/chat.service';
+import { getConvs } from 'services/conversation.service';
 
 function App() {
   const bubbleContainerRef = useRef(null);
@@ -20,50 +21,48 @@ function App() {
   let [bubbles, setBubbles] = useState([]);
   let [mode, setMode] = useState('default');
   let [convId, setConvId] = useState('');
+  let [convs, setConvs] = useState([]);
 
   const handleEnter = async (text) => {
-    const oldBubbles = bubbles;
+    const newChat = {
+      conversationId: convId,
+      role: 'user',
+      content: text,
+      timestamp: Date.now()
+    }
 
     setBubbles((prevBubbles) => {
       let newBubbles = [
-        ...prevBubbles, 
-        {
-          content: text,
-          id: testText.length + 1,
-          role: 'user'
-        }
+        ...prevBubbles,
+        newChat
       ];
 
       return newBubbles;
     });
 
-    oldBubbles.push({
-      content: text,
-      id: testText.length + 1,
-      role: 'user'
-    });
-
-    const oldBubbleData = oldBubbles.map(chatBubble => {
-      return {
-        content: chatBubble.content,
-        role: chatBubble.role
-      }
-    });
-
-    const newMsg = await sendChats(oldBubbleData, mode);
-    setBubbles((prevBubbles) => [...prevBubbles, 
-      {
-        content: newMsg.content,
-        id: testText.length + 1,
-        role: 'assistant'
-      }
+    const newMsg = await sendChat(text, mode, convId);
+    setBubbles((prevBubbles) => [...prevBubbles,
+      newMsg
     ]);
+
+    if (convId === '') {
+      setConvId(newMsg.conversationId)
+    }
   }
 
   useEffect(() => {
     const bubbleContainer = bubbleContainerRef.current;
     bubbleContainer.scrollTop = bubbleContainer.scrollHeight;
-  }, [bubbles])
+  }, [bubbles]);
+
+  useEffect(() => {
+    const loadConvs = async (userId) => {
+      const convRes = await getConvs(userId);
+      setConvs(convRes.convs);
+    }
+
+    loadConvs('smccowan');
+  }, []);
 
   const handleSetMode = (newMode) => {
     setMode(newMode);
