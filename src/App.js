@@ -18,10 +18,10 @@ import { getConvs } from 'services/conversation.service';
 function App() {
   const bubbleContainerRef = useRef(null);
 
+  let [convs, setConvs] = useState([]);
   let [bubbles, setBubbles] = useState([]);
   let [mode, setMode] = useState('default');
   let [convId, setConvId] = useState('');
-  let [convs, setConvs] = useState([]);
 
   const handleEnter = async (text) => {
     const newChat = {
@@ -53,12 +53,12 @@ function App() {
   useEffect(() => {
     const bubbleContainer = bubbleContainerRef.current;
     bubbleContainer.scrollTop = bubbleContainer.scrollHeight;
-  }, [bubbles]);
+  }, [bubbles, convs]);
 
   useEffect(() => {
     const loadConvs = async (userId) => {
       const convRes = await getConvs(userId);
-      setConvs(convRes.convs);
+      setConvs(convRes.data);
     }
 
     loadConvs('smccowan');
@@ -75,6 +75,16 @@ function App() {
           <Col sm={2} className="justify-content-start">
             <div className='nav-column py-2'>
               <ModeSelect handle={handleSetMode} />
+
+              <div className='conversations mt-2'>
+                {
+                  convs.map(conv => (
+                    <div className='conv'>
+                      {conv.name}
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </Col>
           <Col className='text-center w-100 ps-5 pe-0 this-column'>

@@ -16,5 +16,5 @@ export const createConv = async (username) => {
 export const getConvs = async (userId) => {
   const url = `${MDAPI_URL}/zokyo/convs/${userId}`;
 
-  return await getReq(url);
+  return (await getReq(url)).data;
 }

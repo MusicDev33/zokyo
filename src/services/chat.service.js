@@ -8,7 +8,7 @@ import axios from 'axios';
 import { MDAPI_URL } from 'config';
 import { postReq } from './request.service';
 
-const USERNAME = 'testuser1';
+const USERNAME = 'smccowan';
 
 export const sendChat = async (msg, mode, convId) => {
   const url = `${MDAPI_URL}/zokyo/code`;

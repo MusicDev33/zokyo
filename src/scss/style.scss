@@ -82,3 +82,32 @@
   border-radius: 10px;
   background: #0963ca;
 }
+
+// Conversation Stuff
+.conversations {
+  height: 100%;
+  width: 100%;
+
+  padding: 10px 15px;
+  border-radius: 20px;
+
+  background: #3a3a3a;
+}
+
+.conv {
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+
+  padding: 9px 17px;
+  margin-top: 8px;
+  border-radius: 999px;
+
+  &:hover {
+    background: #0c538d;
+  }
+  
+  &.selected {
+    background: #2294fb;
+  }
+}
