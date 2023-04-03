@@ -6,7 +6,7 @@ The Chat Service will manage everything chat-related. This includes the followin
 import axios from 'axios';
 
 import { MDAPI_URL } from 'config';
-import { postReq } from './request.service';
+import { getReq, postReq } from './request.service';
 
 const USERNAME = 'smccowan';
 
@@ -22,24 +22,14 @@ export const sendChat = async (msg, mode, convId) => {
 
   const res = await postReq(url, data);
   console.log(res);
-  return res.data.newChat;
+  return res.data;
 }
 
-export const sendChats = async (chats, mode) => {
-  const url = `${MDAPI_URL}/zokyo/code`;
+export const getChatsByConvId = async (convId) => {
+  const url = `${MDAPI_URL}/zokyo/msgs/${convId}`;
 
-  const data = {
-    chats,
-    mode
-  }
+  const res = await getReq(url);
+  console.log(res.data);
 
-  try {
-    const res = await axios.post(url, data);
-    res['success'] = true;
-
-    return res.data.choices[0].message;
-  } catch (err) {
-    console.log(err);
-    return {success: false}
-  }
+  return res.data;
 }

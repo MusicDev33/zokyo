@@ -12,7 +12,7 @@ import { AutogrowField } from 'components/AutogrowField/AutogrowField';
 import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { testText } from 'testtext';
-import { sendChats, sendChat } from 'services/chat.service';
+import { getChatsByConvId, sendChat } from 'services/chat.service';
 import { getConvs } from 'services/conversation.service';
 
 function App() {
@@ -40,25 +40,29 @@ function App() {
       return newBubbles;
     });
 
-    const newMsg = await sendChat(text, mode, convId);
+    const newMsgData = await sendChat(text, mode, convId);
     setBubbles((prevBubbles) => [...prevBubbles,
-      newMsg
+      newMsgData.newChat
     ]);
 
     if (convId === '') {
-      setConvId(newMsg.conversationId)
+      setConvId(newMsgData.newConversation.id);
+      setConvs((prevConvs) => {
+        return [...prevConvs, newMsgData.newConversation];
+      });
     }
   }
 
   useEffect(() => {
     const bubbleContainer = bubbleContainerRef.current;
     bubbleContainer.scrollTop = bubbleContainer.scrollHeight;
-  }, [bubbles, convs]);
+  }, [bubbles]);
 
   useEffect(() => {
     const loadConvs = async (userId) => {
       const convRes = await getConvs(userId);
       setConvs(convRes.data);
+      console.log(convRes.data);
     }
 
     loadConvs('smccowan');
@@ -66,6 +70,14 @@ function App() {
 
   const handleSetMode = (newMode) => {
     setMode(newMode);
+  }
+
+  const handleConvClick = async (convId) => {
+    const newChats = await getChatsByConvId(convId);
+    console.log(newChats);
+
+    setBubbles(newChats.data);
+    setConvId(convId);
   }
 
   return (
@@ -79,7 +91,9 @@ function App() {
               <div className='conversations mt-2'>
                 {
                   convs.map(conv => (
-                    <div className='conv'>
+                    <div className={`conv ${conv._id === convId ? 'selected' : ''}`} onClick={() => {
+                      handleConvClick(conv._id);
+                    }}>
                       {conv.name}
                     </div>
                   ))
