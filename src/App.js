@@ -46,7 +46,7 @@ function App() {
     ]);
 
     if (convId === '') {
-      setConvId(newMsgData.newConversation.id);
+      setConvId(newMsgData.newConversation._id);
       setConvs((prevConvs) => {
         return [...prevConvs, newMsgData.newConversation];
       });
