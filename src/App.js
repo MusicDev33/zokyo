@@ -7,11 +7,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { AuthBox } from 'components/AuthBox/AuthBox';
 import { ChatBubble } from 'components/ChatBubble/ChatBubble';
 import { AutogrowField } from 'components/AutogrowField/AutogrowField';
 import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
-import { testText } from 'testtext';
 import { getChatsByConvId, sendChat } from 'services/chat.service';
 import { getConvs } from 'services/conversation.service';
 
@@ -98,6 +98,10 @@ function App() {
                     </div>
                   ))
                 }
+              </div>
+
+              <div className='mt-2 w-100'>
+                <AuthBox />
               </div>
             </div>
           </Col>
