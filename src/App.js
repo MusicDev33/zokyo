@@ -14,6 +14,7 @@ import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { getChatsByConvId, sendChat } from 'services/chat.service';
 import { getConvs } from 'services/conversation.service';
+import { createAccount, logIn } from 'services/auth.service';
 
 function App() {
   const bubbleContainerRef = useRef(null);
@@ -22,6 +23,8 @@ function App() {
   let [bubbles, setBubbles] = useState([]);
   let [mode, setMode] = useState('default');
   let [convId, setConvId] = useState('');
+
+  let [user, setUser] = useState(null);
 
   const handleEnter = async (text) => {
     const newChat = {
@@ -40,7 +43,7 @@ function App() {
       return newBubbles;
     });
 
-    const newMsgData = await sendChat(text, mode, convId);
+    const newMsgData = await sendChat(text, mode, convId, user._id);
     setBubbles((prevBubbles) => [...prevBubbles,
       newMsgData.newChat
     ]);
@@ -59,14 +62,18 @@ function App() {
   }, [bubbles]);
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
+
     const loadConvs = async (userId) => {
       const convRes = await getConvs(userId);
       setConvs(convRes.data);
       console.log(convRes.data);
     }
 
-    loadConvs('smccowan');
-  }, []);
+    loadConvs(user._id);
+  }, [user]);
 
   const handleSetMode = (newMode) => {
     setMode(newMode);
@@ -78,6 +85,20 @@ function App() {
 
     setBubbles(newChats.data);
     setConvId(convId);
+  }
+
+  const handleLogin = async (username, password, signupReady) => {
+    if (signupReady) {
+      const userData = await createAccount(username, password);
+      setUser(userData);
+      return;
+    }
+
+    const userData = await logIn(username, password);
+
+    if (userData.success) {
+      setUser(userData.data);
+    }
   }
 
   return (
@@ -101,7 +122,7 @@ function App() {
               </div>
 
               <div className='mt-2 w-100'>
-                <AuthBox />
+                <AuthBox handleLogin={handleLogin} user={user} />
               </div>
             </div>
           </Col>

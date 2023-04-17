@@ -5,6 +5,10 @@
   background: #3a3a3a;
   padding: 12px 15px;
 
+  &.logged-in {
+    color: white;
+  }
+
   .auth-input {
     padding: 4px 7px;
 
@@ -37,6 +41,29 @@
     &:focus {
       border-color: #2294fb;
       background: rgba(156, 156, 156, 0.18);
+    }
+  }
+
+  .login-btn {
+    background: #2294fb;
+    color: white;
+    padding: 7px 15px;
+
+    text-align: center;
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    &:hover {
+      background: #1d83dd;
+    }
+
+    &.disabled {
+      pointer-events: none;
+
+      background: #7a7a7a;
     }
   }
 }

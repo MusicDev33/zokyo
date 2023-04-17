@@ -3,8 +3,6 @@ The Chat Service will manage everything chat-related. This includes the followin
   - Handling the input type from the server (stream or block)
   - ????
 */
-import axios from 'axios';
-
 import { MDAPI_URL } from 'config';
 import { getReq } from './request.service';
 
