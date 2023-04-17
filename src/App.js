@@ -26,6 +26,25 @@ function App() {
 
   let [user, setUser] = useState(null);
 
+  // Used before the user is logged in
+  const fakeAiBubble = (text) => {
+    const newChat = {
+      conversationId: '',
+      role: 'assistant',
+      content: text,
+      timestamp: Date.now()
+    }
+
+    setBubbles((prevBubbles) => {
+      let newBubbles = [
+        ...prevBubbles,
+        newChat
+      ];
+
+      return newBubbles;
+    });
+  }
+
   const handleEnter = async (text) => {
     if (!user) {
       return;
@@ -102,6 +121,11 @@ function App() {
 
     if (userData.success) {
       setUser(userData.data);
+      setBubbles([]);
+    }
+
+    if (!userData.success) {
+      fakeAiBubble(userData.msg);
     }
   }
 
