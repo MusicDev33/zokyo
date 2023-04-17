@@ -27,6 +27,10 @@ function App() {
   let [user, setUser] = useState(null);
 
   const handleEnter = async (text) => {
+    if (!user) {
+      return;
+    }
+
     const newChat = {
       conversationId: convId,
       role: 'user',
@@ -139,7 +143,7 @@ function App() {
               </div>
 
               <div className='flexbox-2'>
-                <AutogrowField maxHeight={350} handleEnter={handleEnter} />
+                <AutogrowField maxHeight={350} handleEnter={handleEnter} disabled={user ? false : true} />
               </div>
             </section>
           </Col>

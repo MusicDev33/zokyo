@@ -15,6 +15,10 @@
 
   transition: 0.35s;
 
+  &.disabled {
+    pointer-events: none;
+  }
+
   &:hover {
     border-color: #1b70bb;
     background-color: #3f3f3f;

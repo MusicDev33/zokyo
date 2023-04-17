@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import './AutogrowField.scss';
 
 // Written with ChatGPT!
-export const AutogrowField = ({ maxHeight, handleEnter }) => {
+export const AutogrowField = ({ maxHeight, handleEnter, disabled }) => {
   const [value, setValue] = useState("");
   const [shiftPressed, setShiftPressed] = useState(false);
   const textareaRef = useRef(null);
@@ -51,13 +51,14 @@ export const AutogrowField = ({ maxHeight, handleEnter }) => {
 
   return (
     <textarea
-      className="autogrow-field"
+      className={`autogrow-field ${disabled ? 'disabled' : ''}`}
       ref={textareaRef}
       value={value}
       onChange={handleChange}
       onKeyUp={handleKeyUp}
       onKeyDown={handleKeyDown}
       style={{ resize: "none", overflow: "hidden", maxHeight: `${maxHeight}px` }}
+      placeholder={`${disabled ? 'Must log in to use Zokyo!' : ''}`}
     />
   );
 }
