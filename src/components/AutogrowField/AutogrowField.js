@@ -49,7 +49,7 @@ export const AutogrowField = ({ maxHeight, handleEnter, disabled }) => {
       onChange={handleChange}
       onKeyUp={handleKeyUp}
       onKeyDown={handleKeyDown}
-      style={{ resize: "none", overflow: "hidden", maxHeight: `${maxHeight}px` }}
+      style={{ resize: "none", maxHeight: `${maxHeight}px` }}
       placeholder={`${disabled ? 'Must log in to use Zokyo!' : ''}`}
     />
   );
