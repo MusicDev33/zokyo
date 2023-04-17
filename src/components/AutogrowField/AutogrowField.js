@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import './AutogrowField.scss';
 
 // Written with ChatGPT!
@@ -6,6 +6,16 @@ export const AutogrowField = ({ maxHeight, handleEnter, disabled }) => {
   const [value, setValue] = useState("");
   const [shiftPressed, setShiftPressed] = useState(false);
   const textareaRef = useRef(null);
+
+  useEffect(() => {
+    textareaRef.current.style.height = "auto";
+      
+    if (textareaRef.current.scrollHeight <= maxHeight) {
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    } else {
+      textareaRef.current.style.height = `${maxHeight}px`;
+    }
+  }, [value]);
 
   const handleKeyUp = (e) => {
     if (e.keyCode === 16) { // Shift key code
@@ -28,25 +38,7 @@ export const AutogrowField = ({ maxHeight, handleEnter, disabled }) => {
   }
 
   const handleChange = (event) => {
-    const lastChar = event.target.value.charAt(event.target.value.length - 1);
-    const isEnterKey = lastChar === '\n';
-
-    if (shiftPressed && textareaRef.current) {
-      setValue(event.target.value);
-      textareaRef.current.style.height = "auto";
-      
-      if (textareaRef.current.scrollHeight <= maxHeight) {
-        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-      } else {
-        textareaRef.current.style.height = `${maxHeight}px`;
-      }
-    } else {
-      if (isEnterKey) {
-        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-        return;
-      }
-      setValue(event.target.value);
-    }
+    setValue(event.target.value);
   };
 
   return (
