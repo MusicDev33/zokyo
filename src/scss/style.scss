@@ -94,14 +94,22 @@
   background: #3a3a3a;
 }
 
+.conv-container {
+  padding: 3px 0;
+}
+
 .conv {
   color: white;
   cursor: pointer;
   transition: 0.3s;
 
   padding: 9px 17px;
-  margin-top: 8px;
+  margin-top: 6px;
   border-radius: 999px;
+
+  .delete-btn-container {
+
+  }
 
   &:hover {
     background: #0c538d;
@@ -109,5 +117,23 @@
   
   &.selected {
     background: #2294fb;
+  }
+}
+
+.new-conv-button {
+  $main: #aaaaaa;
+
+  color: $main;
+  cursor: pointer;
+  transition: 0.3s;
+
+  padding: 9px 17px;
+  margin-top: 8px;
+  border-radius: 999px;
+
+  border: 1px solid $main;
+
+  &:hover {
+    background: #363636;
   }
 }

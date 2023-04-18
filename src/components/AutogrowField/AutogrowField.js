@@ -38,6 +38,10 @@ export const AutogrowField = ({ maxHeight, handleEnter, disabled }) => {
   }
 
   const handleChange = (event) => {
+    if (event.target.value === '\n' && !shiftPressed) {
+      return;
+    }
+    
     setValue(event.target.value);
   };
 

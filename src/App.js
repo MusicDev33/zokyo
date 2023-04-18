@@ -16,6 +16,9 @@ import { getChatsByConvId, sendChat } from 'services/chat.service';
 import { getConvs } from 'services/conversation.service';
 import { createAccount, logIn } from 'services/auth.service';
 
+import { IconContext } from 'react-icons';
+import { FaTrashAlt } from 'react-icons/fa';
+
 function App() {
   const bubbleContainerRef = useRef(null);
 
@@ -147,6 +150,12 @@ function App() {
                     </div>
                   ))
                 }
+                <div className="new-conv-button" onClick={() => {
+                  setConvId('');
+                  setBubbles([]);
+                }}>
+                  New Conversation
+                </div>
               </div>
 
               <div className='mt-2 w-100'>
