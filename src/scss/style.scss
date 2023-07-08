@@ -103,13 +103,11 @@
   cursor: pointer;
   transition: 0.3s;
 
+  flex-grow: 2;
+
   padding: 9px 17px;
   margin-top: 6px;
   border-radius: 999px;
-
-  .delete-btn-container {
-
-  }
 
   &:hover {
     background: #0c538d;
@@ -117,6 +115,22 @@
   
   &.selected {
     background: #2294fb;
+  }
+}
+
+.conv-trash-container {
+  padding: 9px 17px;
+  margin-top: 6px;
+  flex-basis: auto;
+  
+  .conv-trash {
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 120%;
+  
+    &:hover {
+      color: #f74f4f;
+    }
   }
 }
 

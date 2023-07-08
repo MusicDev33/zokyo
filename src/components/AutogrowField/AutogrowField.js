@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+
 import './AutogrowField.scss';
 
 // Written with ChatGPT!
@@ -41,7 +42,7 @@ export const AutogrowField = ({ maxHeight, handleEnter, disabled }) => {
     if (event.target.value === '\n' && !shiftPressed) {
       return;
     }
-    
+
     setValue(event.target.value);
   };
 

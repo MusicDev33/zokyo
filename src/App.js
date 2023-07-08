@@ -13,7 +13,7 @@ import { AutogrowField } from 'components/AutogrowField/AutogrowField';
 import { ModeSelect } from 'components/ModeSelect/ModeSelect';
 
 import { getChatsByConvId, sendChat } from 'services/chat.service';
-import { getConvs } from 'services/conversation.service';
+import { getConvs, deleteConv } from 'services/conversation.service';
 import { createAccount, logIn } from 'services/auth.service';
 
 import { IconContext } from 'react-icons';
@@ -132,6 +132,15 @@ function App() {
     }
   }
 
+  const removeConversation = async (convId) => {
+    const data = await deleteConv(convId);
+    
+    if (data.success) {
+      const newConvs = convs.filter(conv => conv._id !== convId)
+      setConvs(newConvs);
+    }
+  }
+
   return (
     <div className="App bg">
       <Container fluid className='h-100'>
@@ -143,10 +152,17 @@ function App() {
               <div className='conversations mt-2'>
                 {
                   convs.map(conv => (
-                    <div className={`conv ${conv._id === convId ? 'selected' : ''}`} onClick={() => {
-                      handleConvClick(conv._id);
-                    }}>
-                      {conv.name}
+                    <div className='d-flex'>
+                      <div className={`conv ${conv._id === convId ? 'selected' : ''}`} onClick={() => {
+                        handleConvClick(conv._id);
+                      }}>
+                        {conv.name}
+                      </div>
+                      <div className='conv-trash-container'>
+                        <IconContext.Provider value={{ className: 'conv-trash ms-auto' }}>
+                          <div onClick={() => removeConversation(conv._id)}><FaTrashAlt /></div>
+                        </IconContext.Provider>
+                        </div>
                     </div>
                   ))
                 }

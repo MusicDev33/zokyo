@@ -28,3 +28,15 @@ export const postReq = async (url, data) => {
     return {success: false}
   }
 }
+
+export const deleteReq = async (url) => {
+  try {
+    const res = await axios.delete(url);
+    res['success'] = true;
+
+    return res
+  } catch (err) {
+    console.log(err);
+    return {success: false}
+  }
+}
