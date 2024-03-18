@@ -3,7 +3,7 @@ The Chat Service will manage everything chat-related. This includes the followin
   - Handling the input type from the server (stream or block)
   - ????
 */
-import { MDAPI_URL } from 'config';
+import { CLAUDE_API_KEY, MDAPI_URL } from 'config';
 import { getReq, postReq } from './request.service';
 
 export const sendChat = async (msg, mode, convId, userId) => {
@@ -13,7 +13,8 @@ export const sendChat = async (msg, mode, convId, userId) => {
     msg,
     mode,
     user: userId,
-    convId
+    convId,
+    engine: 'chatgpt'
   }
 
   const res = await postReq(url, data);
@@ -28,4 +29,9 @@ export const getChatsByConvId = async (convId) => {
   console.log(res.data);
 
   return res.data;
+}
+
+// Z Format = Zokyo format
+const convertChatToZFormat = () => {
+
 }
