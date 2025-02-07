@@ -70,9 +70,7 @@ function App() {
     });
 
     const newMsgData = await sendChat(text, mode, convId, user._id);
-    setBubbles((prevBubbles) => [...prevBubbles,
-      newMsgData.newChat
-    ]);
+    setBubbles((prevBubbles) => [...prevBubbles, newMsgData.newChat]);
 
     if (convId === '') {
       setConvId(newMsgData.newConversation._id);
@@ -95,7 +93,6 @@ function App() {
     const loadConvs = async (userId) => {
       const convRes = await getConvs(userId);
       setConvs(convRes.data);
-      console.log(convRes.data);
     }
 
     loadConvs(user._id);
@@ -107,7 +104,6 @@ function App() {
 
   const handleConvClick = async (convId) => {
     const newChats = await getChatsByConvId(convId);
-    console.log(newChats);
 
     setBubbles(newChats.data);
     setConvId(convId);
@@ -134,7 +130,7 @@ function App() {
 
   const removeConversation = async (convId) => {
     const data = await deleteConv(convId);
-    
+
     if (data.success) {
       const newConvs = convs.filter(conv => conv._id !== convId)
       setConvs(newConvs);
@@ -162,7 +158,7 @@ function App() {
                         <IconContext.Provider value={{ className: 'conv-trash ms-auto' }}>
                           <div onClick={() => removeConversation(conv._id)}><FaTrashAlt /></div>
                         </IconContext.Provider>
-                        </div>
+                      </div>
                     </div>
                   ))
                 }

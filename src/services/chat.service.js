@@ -3,7 +3,7 @@ The Chat Service will manage everything chat-related. This includes the followin
   - Handling the input type from the server (stream or block)
   - ????
 */
-import { CLAUDE_API_KEY, MDAPI_URL } from 'config';
+import { MDAPI_URL } from 'config';
 import { getReq, postReq } from './request.service';
 
 export const sendChat = async (msg, mode, convId, userId) => {

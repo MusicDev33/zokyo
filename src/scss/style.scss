@@ -18,7 +18,7 @@
 
   border: none;
   transition: all 0.3s;
-  
+
   &:hover {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
   }
@@ -55,7 +55,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 
   padding-bottom: 20px;
@@ -65,7 +65,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -74,10 +74,12 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: #0963ca;
@@ -112,7 +114,7 @@
   &:hover {
     background: #0c538d;
   }
-  
+
   &.selected {
     background: #2294fb;
   }
@@ -122,12 +124,12 @@
   padding: 9px 17px;
   margin-top: 6px;
   flex-basis: auto;
-  
+
   .conv-trash {
     cursor: pointer;
     transition: 0.3s;
     font-size: 120%;
-  
+
     &:hover {
       color: #f74f4f;
     }

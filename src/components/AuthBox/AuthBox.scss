@@ -5,6 +5,8 @@
   background: #3a3a3a;
   padding: 12px 15px;
 
+  transition: 0.3s all;
+
   &.logged-in {
     color: white;
   }
@@ -18,7 +20,7 @@
     caret-color: white;
     color: white;
 
-    outline: none!important;
+    outline: none !important;
 
     width: 100%;
     margin: 5px 0;
