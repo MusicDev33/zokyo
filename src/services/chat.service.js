@@ -6,7 +6,7 @@ The Chat Service will manage everything chat-related. This includes the followin
 import { MDAPI_URL } from 'config';
 import { getReq, postReq } from './request.service';
 
-export const sendChat = async (msg, mode, convId, userId) => {
+export const sendChat = async (msg, mode, convId, userId, engine) => {
   const url = `${MDAPI_URL}/zokyo/code`;
 
   const data = {
@@ -14,7 +14,7 @@ export const sendChat = async (msg, mode, convId, userId) => {
     mode,
     user: userId,
     convId,
-    engine: 'chatgpt'
+    engine
   }
 
   const res = await postReq(url, data);

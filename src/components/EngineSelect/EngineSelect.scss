@@ -1,0 +1,55 @@
+.engine-select {
+  display: flex;
+
+  padding: 2px 2px;
+  text-align: center;
+
+  width: 100%;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  .engine-name {
+    color: #e2e2e2;
+  }
+
+  .engine-switch {
+    transition: 0.3s;
+    cursor: pointer;
+    user-select: none;
+
+    font-size: 24px;
+    color: #a2b4e6;
+
+    &:hover {
+      color: #0963ca;
+    }
+  }
+
+
+  .engine {
+    color: #2294fb;
+    z-index: 10;
+
+    font-weight: bold;
+
+    padding: 7px 24px;
+    margin: 7px 8px;
+
+    border-radius: 999px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    border: 1px solid #2294fb;
+
+    &:hover {
+      color: white;
+      background: #2294fb;
+    }
+
+    &.current {
+      color: white;
+      background: #2294fb;
+    }
+  }
+}

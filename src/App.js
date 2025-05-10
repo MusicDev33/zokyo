@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import { AuthBox } from 'components/AuthBox/AuthBox';
 import { ChatBubble } from 'components/ChatBubble/ChatBubble';
 import { AutogrowField } from 'components/AutogrowField/AutogrowField';
-import { ModeSelect } from 'components/ModeSelect/ModeSelect';
+import { EngineSelect } from 'components/EngineSelect/EngineSelect';
 
 import { getChatsByConvId, sendChat } from 'services/chat.service';
 import { getConvs, deleteConv } from 'services/conversation.service';
@@ -25,6 +25,7 @@ function App() {
   let [convs, setConvs] = useState([]);
   let [bubbles, setBubbles] = useState([]);
   let [mode, setMode] = useState('default');
+  let [engine, setEngine] = useState('claude');
   let [convId, setConvId] = useState('');
 
   let [user, setUser] = useState(null);
@@ -69,7 +70,7 @@ function App() {
       return newBubbles;
     });
 
-    const newMsgData = await sendChat(text, mode, convId, user._id);
+    const newMsgData = await sendChat(text, mode, convId, user._id, engine);
     setBubbles((prevBubbles) => [...prevBubbles, newMsgData.newChat]);
 
     if (convId === '') {
@@ -98,8 +99,8 @@ function App() {
     loadConvs(user._id);
   }, [user]);
 
-  const handleSetMode = (newMode) => {
-    setMode(newMode);
+  const handleSetEngine = (newEngine) => {
+    setEngine(newEngine);
   }
 
   const handleConvClick = async (convId) => {
@@ -143,7 +144,7 @@ function App() {
         <Row className='h-100'>
           <Col sm={2} className="justify-content-start">
             <div className='nav-column py-2'>
-              <ModeSelect handle={handleSetMode} />
+              <EngineSelect handle={handleSetEngine} />
 
               <div className='conversations mt-2'>
                 {
